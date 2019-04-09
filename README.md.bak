@@ -4,11 +4,13 @@ Sample codes following the udemy course
 Dependancy Injection
 =========================================
 #의미
- - 기존의 생성자를 통하여 클래스를 생성하지 dependency를 아는 container를 통하여 클래스를 생성 및 관리하는 방법
+ - 기존의 생성자를 통하여 클래스를 생성하지 dependency를 아는 container를 통하여
+   클래스를 생성 및 관리하는 방법
 * 장점
  - boilerplate code를 줄일 수 있다
  - 한 곳에서 연관된 클래스를 컨트롤 가능하다
- - 기능상 요구가 있을 때 다시 컴파일 하지 않고, Json, Xml등으로 일부만 바꾸어 새로운 기능을 실행 시킬 수있다
+ - 기능상 요구가 있을 때 다시 컴파일 하지 않고, Json, Xml등으로 일부만 바꾸어
+   새로운 기능을 실행 시킬 수있다
  - 클래스의 lifetime control이 쉽다
  - Encapsulation
  
@@ -21,16 +23,3 @@ Inversion of Control(IoC)
 =========================================
 # 의미
  - Generic을 이용하여 영어의 어순과 비슷하게 메소드를 재정립하여 가독성을 높인다
-
-
-Terminology
-=========================================
-# Component
- - A body of code that declares the services it provides and the dependencies it consumes
-
-# Service
- - A contract between a providing and consuming component
-
-# Container
- - Manages the components that make up the application
-
