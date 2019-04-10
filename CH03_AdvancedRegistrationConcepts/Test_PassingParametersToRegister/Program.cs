@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
 
-namespace Lec15_PassingParametersToRegister
+namespace Test_PassingParametersToRegister
 {
     public interface ILog
     {
@@ -38,7 +38,7 @@ namespace Lec15_PassingParametersToRegister
 
     public class SMSLog : ILog
     {
-        private string phoneNumber;
+        public string phoneNumber;
 
         public SMSLog(string phoneNumber)
         {
@@ -47,7 +47,7 @@ namespace Lec15_PassingParametersToRegister
 
         public void Write(string message)
         {
-            Console.WriteLine($"SMS to {phoneNumber} : {message}");
+            Console.WriteLine($"SMS to {phoneNumber}: {message}");
         }
     }
 
@@ -103,56 +103,44 @@ namespace Lec15_PassingParametersToRegister
         static void Main(string[] args)
         {
             var builder = new ContainerBuilder();
-
-            // 파라미터 전달하는 방법
-
             /*
-            // 1. named parameter 
+            // 1. named parameter
+            
             builder.RegisterType<SMSLog>()
                 .As<ILog>()
-                .WithParameter("phoneNumber", "+1234567");
+                .WithParameter("phoneNumber", "+12345");
+            
+            // 2. typed parameter 
+            builder.RegisterType<SMSLog>()
+                .As<ILog>()
+                .WithParameter(new TypedParameter(typeof(string), "+123456"));
 
+            // 3. resolved parameter
+            builder.RegisterType<SMSLog>()
+                .As<ILog>()
+                .WithParameter(new ResolvedParameter(
+                    (pi, ctx) => pi.ParameterType == typeof(string) && pi.Name == "phoneNumber",
+                    (pi, ctx) => "+1234567"));
+            
             var container = builder.Build();
             var log = container.Resolve<ILog>();
             */
 
-            /*
-            // 2. typed parameter
-            builder.RegisterType<SMSLog>()
-                .As<ILog>()
-                .WithParameter(new TypedParameter(typeof(string), "+1234567"));
-
-            var container = builder.Build();
-            var log = container.Resolve<ILog>();
-            */
-
-            /*
-            // 3. resolved parameter 
-            builder.RegisterType<SMSLog>()
-                .As<ILog>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        // predicate : 이 값이 어떤것인지 서술하는 부분
-                        (ParameterInfo pi, IComponentContext ctx) => pi.ParameterType == typeof(string) && pi.Name == "phoneNumber",
-                        // value accessor : 실제 값
-                        (ParameterInfo pi, IComponentContext ctx) => "+1234567"
-                        ));
-
-            var container = builder.Build();
-            var log = container.Resolve<ILog>();
-            */
-
-            // 4. lamda expression
-            Random random = new Random();
+            // 4. setting parameters when resolving
             builder.Register((c, p) => new SMSLog(p.Named<string>("phoneNumber")))
                 .As<ILog>();
-
-            Console.WriteLine("About to build container...");
             var container = builder.Build();
-            // 실제 사용(resolve) 할 때 값을 넣는다
-            var log = container.Resolve<ILog>(new NamedParameter("phoneNumber", random.Next().ToString()));
-            
-            log.Write("test message");
+            Random random = new Random();
+            var log = container.Resolve<ILog>(new NamedParameter("phoneNumber", "+1234"));
+            log.Write("messsss");
+
+            var builder2 = new ContainerBuilder();
+            builder2.Register((c, p) => new SMSLog(p.Named<string>("phoneNumber")))
+                .As<ILog>();
+
+            var container2 = builder2.Build();
+            var log2 = container2.Resolve<ILog>(new NamedParameter("phoneNumber", "+123"));
+            log2.Write("ssses");
 
             Console.ReadKey();
         }
