@@ -1,0 +1,17 @@
+{
+  "defaultAssembly": "Lec40_JSON_XML_ConfigurationWithMicrosoftConfig",
+  "components": [
+    {
+      "type": "Lec40_JSON_XML_ConfigurationWithMicrosoftConfig.Addition",
+      "services": [
+        { "type": "Lec40_JSON_XML_ConfigurationWithMicrosoftConfig.IOperation" }
+      ]
+    },
+    {
+      "type": "Lec40_JSON_XML_ConfigurationWithMicrosoftConfig.Multiplication",
+      "services": [
+        { "type": "Lec40_JSON_XML_ConfigurationWithMicrosoftConfig.IOperation" }
+      ]
+    }
+  ]
+}

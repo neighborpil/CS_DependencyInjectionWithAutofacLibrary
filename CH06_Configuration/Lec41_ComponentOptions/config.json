@@ -1,0 +1,43 @@
+{
+  "defaultAssembly": "Lec41_ComponentOptions",
+  "components": [
+    {
+      "type": "Lec41_ComponentOptions.Addition",
+      "services": [
+        {
+          "type": "Lec41_ComponentOptions.IOperation",
+          "type": "Lec41_ComponentOptions.IOtherOperation"
+        }
+      ],
+      "autoActivate": true,
+      "injectProperties": true,
+      "instanceScope": "per-dependency",
+      "metadata": [
+        {
+          "key": "extraValue",
+          "value": 123,
+          "type": "System.Int32, mscorlib"
+        }
+      ],
+      "ownership": "external",
+      "parameters": {
+        "percision": 5
+      },
+      "properties": {
+        "ValueDictionary": {
+          "One": 1,
+          "Two": 2
+        },
+        "SomeList": [1,2,3,4] 
+      } 
+    },
+    {
+      "type": "Lec41_ComponentOptions.Multiplication",
+      "services": [
+        {
+          "type": "Lec41_ComponentOptions.IOperation"
+        }
+      ]
+    }
+  ]
+}

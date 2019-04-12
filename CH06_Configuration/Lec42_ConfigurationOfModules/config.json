@@ -1,0 +1,8 @@
+{
+  "defaultAssembly": "Lec42_ConfigurationOfModules",
+  "modules": [
+    {
+      "type": "Lec42_ConfigurationOfModules.CalculationModule"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "defaultAssembly": "Test_JSON_XML_ConfigurationWithMicrosoftConfig",
+  "components": [
+    {
+      "type": "Test_JSON_XML_ConfigurationWithMicrosoftConfig.Addition",
+      "services": [
+        {
+          "type": "Test_JSON_XML_ConfigurationWithMicrosoftConfig.IOperation"
+        }
+      ]
+    },
+    {
+      "type": "Test_JSON_XML_ConfigurationWithMicrosoftConfig.Multiplication",
+      "services": [
+        {
+          "type": "Test_JSON_XML_ConfigurationWithMicrosoftConfig.IOperation"
+        }
+      ] 
+    }
+  ] 
+}

@@ -1,0 +1,8 @@
+{
+  "defaultAssembly": "Test_ConfigurationOfModules",
+  "modules": [
+    {
+      "type": "Test_ConfigurationOfModules.OperationModule"
+    }
+  ] 
+}
